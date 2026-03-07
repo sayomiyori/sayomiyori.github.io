@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Матвей Бурик — Портфолио · Python · C# · C++ · Frontend</title>
+  <meta name="description" content="Портфолио Матвея Бурика: Python, C#, C++, Frontend. Telegram-боты, десктоп, лендинги.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="gradient-orb gradient-orb--1"></div>
+  <div class="gradient-orb gradient-orb--2"></div>
+  <div class="gradient-orb gradient-orb--3"></div>
+
+  <header class="header">
+    <nav class="nav container">
+      <a href="#" class="nav__logo">MB</a>
+      <ul class="nav__list">
+        <li><a href="#about">Обо мне</a></li>
+        <li><a href="#stack">Стек</a></li>
+        <li><a href="#projects">Проекты</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+      <button class="nav__burger" aria-label="Меню">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__inner">
+        <p class="hero__label animate-fade-up">Junior Developer</p>
+        <h1 class="hero__title">
+          <span class="hero__title-line animate-fade-up">Привет, я</span>
+          <span class="hero__title-name animate-fade-up" data-delay="1">Матвей Бурик</span>
+        </h1>
+        <p class="hero__subtitle animate-fade-up" data-delay="2">
+          <span class="typing-text" data-words='["Python · C# · C++", "Telegram-боты", "Десктоп & лендинги", "Frontend"]'></span>
+          <span class="typing-cursor">|</span>
+        </p>
+        <p class="hero__location animate-fade-up" data-delay="3">Симферополь · Работаю удалённо</p>
+        <div class="hero__cta animate-fade-up" data-delay="4">
+          <a href="#projects" class="btn btn--primary">Смотреть проекты</a>
+          <a href="#contact" class="btn btn--ghost">Написать</a>
+        </div>
+        <div class="hero__scroll animate-fade-up" data-delay="5">
+          <span class="hero__scroll-text">Листай вниз</span>
+          <div class="hero__scroll-line"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section about">
+      <div class="container">
+        <h2 class="section__title reveal">Обо мне</h2>
+        <div class="about__grid reveal">
+          <div class="about__content">
+            <p class="about__text">Разрабатываю <strong>Telegram-ботов</strong> на Python (aiogram), <strong>десктоп-приложения</strong> на C# (WPF/MVVM) и C++ (WinAPI), а также <strong>лендинги</strong> на чистом HTML/CSS/JS без фреймворков.</p>
+            <p class="about__text">Люблю доводить идеи до рабочего продукта: от макета в Figma до кода и деплоя. Открыт к пет-проектам и коллаборациям.</p>
+          </div>
+          <div class="about__highlights">
+            <div class="highlight-card">
+              <span class="highlight-card__icon">🤖</span>
+              <span>Telegram-боты, asyncio, SQLite</span>
+            </div>
+            <div class="highlight-card">
+              <span class="highlight-card__icon">🖥️</span>
+              <span>WPF, WinAPI, системные утилиты</span>
+            </div>
+            <div class="highlight-card">
+              <span class="highlight-card__icon">🌐</span>
+              <span>Лендинги, mobile-first, GitHub Pages</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="stack" class="section stack">
+      <div class="container">
+        <h2 class="section__title reveal">Стек</h2>
+        <div class="stack__grid reveal">
+          <div class="stack__group">
+            <h3 class="stack__group-title">Backend</h3>
+            <div class="stack__tags">
+              <span class="stack__tag">Python</span>
+              <span class="stack__tag">aiogram</span>
+              <span class="stack__tag">asyncio</span>
+              <span class="stack__tag">SQLite</span>
+              <span class="stack__tag">pytest</span>
+            </div>
+          </div>
+          <div class="stack__group">
+            <h3 class="stack__group-title">Desktop</h3>
+            <div class="stack__tags">
+              <span class="stack__tag">C#</span>
+              <span class="stack__tag">WPF</span>
+              <span class="stack__tag">MVVM</span>
+              <span class="stack__tag">C++</span>
+              <span class="stack__tag">WinAPI</span>
+            </div>
+          </div>
+          <div class="stack__group">
+            <h3 class="stack__group-title">Frontend</h3>
+            <div class="stack__tags">
+              <span class="stack__tag">HTML5</span>
+              <span class="stack__tag">CSS3</span>
+              <span class="stack__tag">JavaScript</span>
+              <span class="stack__tag">GitHub Pages</span>
+            </div>
+          </div>
+          <div class="stack__group">
+            <h3 class="stack__group-title">Инструменты</h3>
+            <div class="stack__tags">
+              <span class="stack__tag">Git</span>
+              <span class="stack__tag">Figma</span>
+              <span class="stack__tag">Blender</span>
+              <span class="stack__tag">Aseprite</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects" class="section projects">
+      <div class="container">
+        <h2 class="section__title reveal">Проекты</h2>
+        <div class="projects__grid">
+          <article class="project-card reveal">
+            <div class="project-card__media">
+              <img src="assets/screenshots/nail-landing.jpg" alt="NailLanding — лендинг маникюра" onerror="this.src='https://placehold.co/800x500/1a1a2e/00d4aa?text=NailLanding'">
+              <div class="project-card__overlay">
+                <a href="https://sayomiyori.github.io/NailLanding/" target="_blank" rel="noopener" class="project-card__link">Открыть демо →</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">NailLanding</h3>
+              <p class="project-card__desc">Лендинг мастера маникюра. Адаптивная вёрстка, анимации, форма записи.</p>
+              <div class="project-card__stack">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>GitHub Pages</span>
+              </div>
+              <a href="https://github.com/sayomiyori/NailLanding" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card__media">
+              <img src="assets/screenshots/cakes-landing.jpg" alt="CakesLanding — лендинг кондитера" onerror="this.src='https://placehold.co/800x500/1a1a2e/00d4aa?text=CakesLanding'">
+              <div class="project-card__overlay">
+                <a href="https://sayomiyori.github.io/cakesLanding/" target="_blank" rel="noopener" class="project-card__link">Открыть демо →</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">CakesLanding</h3>
+              <p class="project-card__desc">Лендинг кондитера. Галерея, блоки услуг, контакты.</p>
+              <div class="project-card__stack">
+                <span>HTML</span><span>CSS</span><span>JS</span><span>GitHub Pages</span>
+              </div>
+              <a href="https://github.com/sayomiyori/cakesLanding" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card__media project-card__media--placeholder">
+              <div class="project-card__placeholder">C++ · WinAPI</div>
+              <div class="project-card__overlay">
+                <a href="https://github.com/sayomiyori/HotkeyManager" target="_blank" rel="noopener" class="project-card__link">Смотреть репо →</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">HotkeyManager</h3>
+              <p class="project-card__desc">Менеджер горячих клавиш для Windows с low-level перехватом ввода, JSON-конфиг, многопоточность.</p>
+              <div class="project-card__stack">
+                <span>C++</span><span>WinAPI</span><span>JSON</span>
+              </div>
+              <a href="https://github.com/sayomiyori/HotkeyManager" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card__media project-card__media--placeholder">
+              <div class="project-card__placeholder">C++ · WinAPI</div>
+              <div class="project-card__overlay">
+                <a href="https://github.com/sayomiyori/ProcessMonitor" target="_blank" rel="noopener" class="project-card__link">Смотреть репо →</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">ProcessMonitor</h3>
+              <p class="project-card__desc">Системный монитор процессов Windows: дерево процессов, права доступа, командная строка.</p>
+              <div class="project-card__stack">
+                <span>C++</span><span>WinAPI</span>
+              </div>
+              <a href="https://github.com/sayomiyori/ProcessMonitor" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-card__media project-card__media--placeholder">
+              <div class="project-card__placeholder">Python · aiogram</div>
+              <div class="project-card__overlay">
+                <a href="https://github.com/sayomiyori/BodyTellingTelegramBot" target="_blank" rel="noopener" class="project-card__link">Смотреть репо →</a>
+              </div>
+            </div>
+            <div class="project-card__body">
+              <h3 class="project-card__title">BodyTellingBot</h3>
+              <p class="project-card__desc">Telegram-бот для фитнес-клуба: опросы, подбор тренировок, достижения, тесты.</p>
+              <div class="project-card__stack">
+                <span>Python</span><span>aiogram</span><span>SQLite</span>
+              </div>
+              <a href="https://github.com/sayomiyori/BodyTellingTelegramBot" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="container">
+        <h2 class="section__title reveal">Контакты</h2>
+        <p class="contact__lead reveal">Открыт к проектам и коллаборациям. Напиши — обсудим идеи.</p>
+        <div class="contact__links reveal">
+          <a href="https://t.me/cons3qu3nc3s" target="_blank" rel="noopener" class="contact__link contact__link--tg">
+            <span class="contact__link-icon">Telegram</span>
+            <span>@cons3qu3nc3s</span>
+          </a>
+          <a href="https://vk.com/sayzeromi" target="_blank" rel="noopener" class="contact__link contact__link--vk">
+            <span class="contact__link-icon">VK</span>
+            <span>sayzeromi</span>
+          </a>
+          <a href="https://github.com/sayomiyori" target="_blank" rel="noopener" class="contact__link contact__link--gh">
+            <span class="contact__link-icon">GitHub</span>
+            <span>sayomiyori</span>
+          </a>
+          <a href="https://youtube.com/@sayomiyori" target="_blank" rel="noopener" class="contact__link contact__link--yt">
+            <span class="contact__link-icon">YouTube</span>
+            <span>@sayomiyori</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer__text">Матвей Бурик · 2025 · Портфолио</p>
+    </div>
+  </footer>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
