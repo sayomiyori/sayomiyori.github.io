@@ -1,256 +1,445 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Матвей Бурик — Портфолио · Python · C# · C++ · Frontend</title>
-  <meta name="description" content="Портфолио Матвея Бурика: Python, C#, C++, Frontend. Telegram-боты, десктоп, лендинги.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAYOMIYORI // BACKEND SYSTEMS</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050a05;--panel:#0a120a;--panel2:#0d170d;
+  --border:#1a2e1a;--border-glow:#2a5a2a;--border-bright:#3aff3a;
+  --glow:#4ade80;--glow-bright:#86efac;--glow-dim:#22c55e;--glow-deep:#15803d;
+  --neon:#39ff14;--neon-dim:rgba(57,255,20,.15);--neon-glow:rgba(57,255,20,.4);
+  --text:#b8d4b8;--text-dim:#5a7a5a;--text-bright:#e0ffe0;
+  --accent:#6ee7b7;
+}
+html{font-size:14px;scroll-behavior:smooth;scrollbar-width:thin;scrollbar-color:var(--border) var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:'Share Tech Mono',monospace;overflow-x:hidden;cursor:none}
+
+/* CUSTOM CURSOR */
+.cursor{position:fixed;width:20px;height:20px;border:1px solid var(--glow);border-radius:50%;pointer-events:none;z-index:99999;transition:transform .15s,width .3s,height .3s,border-color .3s;transform:translate(-50%,-50%);mix-blend-mode:difference}
+.cursor-dot{position:fixed;width:4px;height:4px;background:var(--neon);border-radius:50%;pointer-events:none;z-index:99999;transform:translate(-50%,-50%);box-shadow:0 0 6px var(--neon),0 0 12px var(--neon-glow)}
+.cursor.hover{width:50px;height:50px;border-color:var(--neon);box-shadow:0 0 20px var(--neon-dim)}
+
+/* SCANLINES */
+body::before{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(57,255,20,.015) 2px,rgba(57,255,20,.015) 4px);pointer-events:none;z-index:9999}
+body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");pointer-events:none;z-index:9998}
+
+#bg-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+
+.page{position:relative;z-index:1}
+
+/* SCAN BAR */
+.scan-bar{position:fixed;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:.25;z-index:9997;pointer-events:none;animation:scan-move 6s linear infinite}
+@keyframes scan-move{0%{transform:translateY(-10px)}100%{transform:translateY(100vh)}}
+
+/* VIGNETTE */
+.vignette{position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 50%,rgba(0,0,0,.6) 100%);pointer-events:none;z-index:9996}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1rem 2.5rem;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(16px);background:rgba(5,10,5,.6);border-bottom:1px solid var(--border);transition:all .4s}
+.nav.scrolled{background:rgba(5,10,5,.92);border-bottom-color:var(--border-glow);box-shadow:0 0 30px rgba(57,255,20,.05)}
+.nav-logo{font-family:'Orbitron',sans-serif;font-size:.9rem;font-weight:800;color:var(--neon);letter-spacing:4px;text-decoration:none;text-transform:uppercase;text-shadow:0 0 10px var(--neon-glow),0 0 20px rgba(57,255,20,.2)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--text-dim);text-decoration:none;font-size:.7rem;letter-spacing:3px;text-transform:uppercase;transition:all .3s;position:relative;padding:.3rem 0}
+.nav-links a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:1px;background:var(--neon);box-shadow:0 0 6px var(--neon-glow);transition:width .3s}
+.nav-links a:hover{color:var(--neon)}
+.nav-links a:hover::after{width:100%}
+
+/* ===== HERO ===== */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:6rem 2rem 4rem;position:relative}
+.hero-content{max-width:850px}
+.hero-tag{font-size:.6rem;color:var(--glow-deep);letter-spacing:8px;text-transform:uppercase;margin-bottom:2rem;opacity:0;animation:fade-up .8s .5s ease forwards}
+
+/* GLITCH NAME */
+.hero-name{font-family:'Orbitron',sans-serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:900;color:var(--text-bright);letter-spacing:8px;text-transform:uppercase;line-height:1;margin-bottom:1rem;opacity:0;animation:fade-up 1s .7s ease forwards;position:relative;text-shadow:0 0 20px rgba(57,255,20,.3),0 0 60px rgba(57,255,20,.1)}
+.hero-name::before,.hero-name::after{content:attr(data-text);position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none}
+.hero-name::before{color:var(--neon);z-index:-1;animation:glitch-1 3s infinite linear alternate-reverse;clip-path:inset(0 0 80% 0)}
+.hero-name::after{color:#ff3a3a;z-index:-2;animation:glitch-2 2.5s infinite linear alternate-reverse;clip-path:inset(80% 0 0 0)}
+@keyframes glitch-1{0%{transform:translate(0)}20%{transform:translate(-2px,1px)}40%{transform:translate(2px,-1px)}60%{transform:translate(-1px,2px)}80%{transform:translate(1px,-2px)}100%{transform:translate(0)}}
+@keyframes glitch-2{0%{transform:translate(0)}25%{transform:translate(2px,1px)}50%{transform:translate(-2px,-1px)}75%{transform:translate(1px,2px)}100%{transform:translate(0)}}
+
+.hero-role{font-family:'Orbitron',sans-serif;font-size:clamp(.75rem,1.4vw,1rem);font-weight:400;color:var(--glow);letter-spacing:10px;text-transform:uppercase;margin-bottom:3rem;opacity:0;animation:fade-up .8s .9s ease forwards;text-shadow:0 0 10px rgba(74,222,128,.3)}
+
+/* TERMINAL TYPING */
+.hero-terminal{background:var(--panel);border:1px solid var(--border);padding:1.2rem 1.5rem;max-width:500px;margin:0 auto 3rem;text-align:left;font-size:.78rem;line-height:1.8;opacity:0;animation:fade-up .8s 1.1s ease forwards;position:relative;overflow:hidden}
+.hero-terminal::before{content:'TERMINAL';position:absolute;top:0;left:0;right:0;background:rgba(57,255,20,.05);border-bottom:1px solid var(--border);padding:.3rem .8rem;font-size:.5rem;letter-spacing:3px;color:var(--text-dim)}
+.hero-terminal-content{margin-top:1.5rem}
+.term-line{overflow:hidden;white-space:nowrap;animation:type-line .6s steps(40) forwards;opacity:0}
+.term-line:nth-child(1){animation-delay:1.5s}
+.term-line:nth-child(2){animation-delay:2.1s}
+.term-line:nth-child(3){animation-delay:2.7s}
+.term-line:nth-child(4){animation-delay:3.3s}
+.term-prompt{color:var(--neon)}
+.term-key{color:var(--text-dim)}
+.term-val{color:var(--glow-bright)}
+@keyframes type-line{from{width:0;opacity:1}to{width:100%;opacity:1}}
+
+.hero-cta{display:flex;gap:1rem;justify-content:center;opacity:0;animation:fade-up .8s 3.8s ease forwards}
+.btn{padding:.75rem 2.2rem;font-family:'Share Tech Mono',monospace;font-size:.72rem;letter-spacing:3px;text-transform:uppercase;text-decoration:none;border:1px solid var(--border);color:var(--text);transition:all .4s;position:relative;overflow:hidden}
+.btn::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,var(--neon-dim),transparent);transform:translateX(-100%);transition:transform .6s}
+.btn:hover::before{transform:translateX(100%)}
+.btn:hover{border-color:var(--glow-dim);color:var(--neon);box-shadow:0 0 25px rgba(57,255,20,.15),inset 0 0 15px rgba(57,255,20,.05);text-shadow:0 0 8px var(--neon-glow)}
+.btn-primary{background:rgba(57,255,20,.06);border-color:var(--border-glow);color:var(--glow)}
+.btn-primary:hover{background:rgba(57,255,20,.12)}
+
+.scroll-indicator{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:0;animation:fade-up .8s 4.2s ease forwards}
+.scroll-text{font-size:.55rem;color:var(--text-dim);letter-spacing:5px;text-transform:uppercase}
+.scroll-line{width:1px;height:45px;background:linear-gradient(to bottom,var(--glow-dim),transparent);animation:pulse-line 2s ease-in-out infinite}
+@keyframes pulse-line{0%,100%{opacity:.2;height:45px}50%{opacity:1;height:60px}}
+
+/* ===== SECTIONS ===== */
+.section{padding:6rem 2rem;max-width:1100px;margin:0 auto}
+.section-header{display:flex;align-items:center;gap:1.2rem;margin-bottom:3.5rem}
+.section-header::before,.section-header::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border))}
+.section-header::after{background:linear-gradient(90deg,var(--border),transparent)}
+.section-title{font-family:'Orbitron',sans-serif;font-size:.7rem;font-weight:700;letter-spacing:7px;text-transform:uppercase;color:var(--glow);white-space:nowrap;text-shadow:0 0 8px rgba(74,222,128,.3)}
+
+/* ===== DOSSIER ===== */
+.dossier{border:1px solid var(--border);background:var(--panel);overflow:hidden;transition:all .5s;position:relative}
+.dossier::after{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:0;transition:opacity .5s}
+.dossier:hover{border-color:var(--border-glow);box-shadow:0 0 40px rgba(57,255,20,.06)}
+.dossier:hover::after{opacity:.6}
+.dossier-bar{background:rgba(57,255,20,.03);border-bottom:1px solid var(--border);padding:.55rem 1.2rem;display:flex;justify-content:space-between;font-size:.6rem;color:var(--text-dim);letter-spacing:3px;text-transform:uppercase}
+.dossier-bar .active{color:var(--neon);text-shadow:0 0 6px var(--neon-glow);animation:status-blink 2s ease-in-out infinite}
+@keyframes status-blink{0%,100%{opacity:1}50%{opacity:.5}}
+.dossier-grid{display:grid;grid-template-columns:1fr 1fr}
+.dossier-col{padding:2rem}
+.dossier-col:first-child{border-right:1px solid var(--border)}
+.d-name{font-family:'Orbitron',sans-serif;font-size:1.8rem;font-weight:900;color:var(--neon);letter-spacing:4px;text-transform:uppercase;margin-bottom:.5rem;text-shadow:0 0 15px var(--neon-glow),0 0 30px rgba(57,255,20,.15)}
+.d-role{font-size:.75rem;color:var(--glow-dim);letter-spacing:5px;text-transform:uppercase;margin-bottom:1.5rem}
+.d-field{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid rgba(26,46,26,.6);font-size:.78rem}
+.d-field:last-child{border:none}
+.d-label{color:var(--text-dim);letter-spacing:2px;text-transform:uppercase}
+.d-value{color:var(--text-bright);text-align:right}
+.d-value.glow{color:var(--glow);text-shadow:0 0 6px rgba(74,222,128,.3)}
+.focus-title{font-size:.6rem;color:var(--text-dim);letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem}
+.focus-item{padding:.5rem .8rem;margin-bottom:.35rem;border-left:2px solid var(--border);font-size:.78rem;transition:all .3s}
+.focus-item:hover{border-left-color:var(--neon);color:var(--neon);background:rgba(57,255,20,.03);text-shadow:0 0 8px var(--neon-glow);box-shadow:inset 2px 0 10px rgba(57,255,20,.05)}
+
+/* ===== STACK ===== */
+.stack-grid{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);background:var(--panel);overflow:hidden}
+.stack-col{padding:1.3rem;border-right:1px solid var(--border);transition:background .3s}
+.stack-col:last-child{border-right:none}
+.stack-col:hover{background:rgba(57,255,20,.02)}
+.stack-col-title{font-size:.55rem;color:var(--text-dim);letter-spacing:3px;text-transform:uppercase;margin-bottom:.8rem;padding-bottom:.5rem;border-bottom:1px solid rgba(26,46,26,.5)}
+.s-item{font-size:.78rem;padding:.35rem 0;transition:all .3s;cursor:default;position:relative}
+.s-item::before{content:'>';color:var(--border);margin-right:.5rem;transition:all .3s}
+.s-item:hover{color:var(--neon);text-shadow:0 0 8px var(--neon-glow);padding-left:.3rem}
+.s-item:hover::before{color:var(--neon);text-shadow:0 0 6px var(--neon-glow)}
+
+/* ===== PROJECT CARDS ===== */
+.projects-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.p-card{border:1px solid var(--border);background:var(--panel);text-decoration:none;color:inherit;display:block;transition:all .5s;position:relative;overflow:hidden}
+.p-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--neon),transparent);opacity:0;transition:opacity .5s}
+.p-card::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(57,255,20,.04),transparent 70%);opacity:0;transition:opacity .5s}
+.p-card:hover{border-color:var(--border-glow);transform:translateY(-4px);box-shadow:0 10px 40px rgba(57,255,20,.08),0 0 1px var(--glow-dim)}
+.p-card:hover::before{opacity:.8}
+.p-card:hover::after{opacity:1}
+.p-card-bar{background:rgba(57,255,20,.02);border-bottom:1px solid var(--border);padding:.5rem 1rem;display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1}
+.p-card-id{font-size:.55rem;color:var(--text-dim);letter-spacing:3px;text-transform:uppercase}
+.p-card-status{font-size:.48rem;color:var(--neon);letter-spacing:2px;padding:.15rem .55rem;border:1px solid var(--border-glow);text-shadow:0 0 4px var(--neon-glow)}
+.p-card-body{padding:1.3rem;position:relative;z-index:1}
+.p-card-name{font-family:'Orbitron',sans-serif;font-size:.88rem;font-weight:700;color:var(--glow-bright);letter-spacing:2px;text-transform:uppercase;margin-bottom:.3rem;transition:all .4s}
+.p-card:hover .p-card-name{color:var(--neon);text-shadow:0 0 12px var(--neon-glow)}
+.p-card-desc{font-size:.72rem;color:var(--text-dim);margin-bottom:1rem;line-height:1.5}
+.p-card-tags{display:flex;flex-wrap:wrap;gap:.3rem;margin-bottom:1rem}
+.p-tag{font-size:.56rem;padding:.18rem .45rem;border:1px solid var(--border);color:var(--accent);letter-spacing:1px;transition:all .3s}
+.p-card:hover .p-tag{border-color:var(--border-glow);box-shadow:0 0 6px rgba(57,255,20,.08)}
+.p-card-details{border-top:1px solid rgba(26,46,26,.5);padding-top:.8rem}
+.p-detail{font-size:.68rem;padding:.2rem 0;display:flex;gap:.5rem;line-height:1.4}
+.p-marker{color:var(--glow-dim);flex-shrink:0}
+.p-card:hover .p-marker{color:var(--neon);text-shadow:0 0 4px var(--neon-glow)}
+
+/* ===== ARCHITECTURE ===== */
+.arch-grid{border:1px solid var(--border);background:var(--panel);overflow:hidden}
+.arch-item{padding:1.3rem 1.5rem;border-bottom:1px solid var(--border);transition:all .3s;position:relative}
+.arch-item:last-child{border:none}
+.arch-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--border);transition:all .4s}
+.arch-item:hover{background:rgba(57,255,20,.02)}
+.arch-item:hover::before{background:var(--neon);box-shadow:0 0 10px var(--neon-glow)}
+.arch-head{display:flex;align-items:center;gap:.8rem;margin-bottom:.5rem}
+.arch-name{font-family:'Orbitron',sans-serif;font-size:.68rem;font-weight:700;color:var(--glow);letter-spacing:2px;text-transform:uppercase;transition:all .3s}
+.arch-item:hover .arch-name{color:var(--neon);text-shadow:0 0 8px var(--neon-glow)}
+.arch-sep{flex:1;height:1px;background:linear-gradient(90deg,var(--border),transparent)}
+.arch-text{font-size:.75rem;line-height:1.7;padding-left:.5rem}
+.arch-hl{color:var(--glow-bright)}
+.arch-item:hover .arch-hl{color:var(--neon);text-shadow:0 0 4px var(--neon-glow)}
+
+/* ===== FOOTER ===== */
+.footer{border:1px solid var(--border);background:var(--panel);padding:2rem;text-align:center;max-width:1100px;margin:0 auto 3rem;position:relative;overflow:hidden}
+.footer::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--glow-dim),transparent)}
+.footer-text{font-size:.6rem;color:var(--text-dim);letter-spacing:5px;text-transform:uppercase;margin-bottom:1rem}
+.footer-links{display:flex;justify-content:center;gap:2.5rem}
+.f-link{font-size:.72rem;color:var(--glow);text-decoration:none;letter-spacing:2px;transition:all .3s;position:relative}
+.f-link::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--neon);box-shadow:0 0 6px var(--neon-glow);transition:width .3s}
+.f-link:hover{color:var(--neon);text-shadow:0 0 10px var(--neon-glow)}
+.f-link:hover::after{width:100%}
+
+/* CORNERS */
+.corner{position:fixed;width:35px;height:35px;z-index:2;opacity:.15;pointer-events:none}
+.c-tl{top:10px;left:10px;border-top:1px solid var(--glow-dim);border-left:1px solid var(--glow-dim)}
+.c-tr{top:10px;right:10px;border-top:1px solid var(--glow-dim);border-right:1px solid var(--glow-dim)}
+.c-bl{bottom:10px;left:10px;border-bottom:1px solid var(--glow-dim);border-left:1px solid var(--glow-dim)}
+.c-br{bottom:10px;right:10px;border-bottom:1px solid var(--glow-dim);border-right:1px solid var(--glow-dim)}
+
+/* ANIMATIONS */
+@keyframes fade-up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:.15s}
+.reveal-delay-2{transition-delay:.3s}
+.reveal-delay-3{transition-delay:.45s}
+.reveal-delay-4{transition-delay:.6s}
+.reveal-delay-5{transition-delay:.75s}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .dossier-grid{grid-template-columns:1fr}
+  .dossier-col:first-child{border-right:none;border-bottom:1px solid var(--border)}
+  .stack-grid{grid-template-columns:1fr 1fr}
+  .stack-col:nth-child(2){border-right:none}
+  .stack-col:nth-child(1),.stack-col:nth-child(2){border-bottom:1px solid var(--border)}
+  .projects-grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  body{cursor:auto}
+  .cursor,.cursor-dot{display:none}
+}
+@media(max-width:500px){
+  .stack-grid{grid-template-columns:1fr}
+  .stack-col{border-right:none!important;border-bottom:1px solid var(--border)}
+  .stack-col:last-child{border-bottom:none}
+  .corner{display:none}
+  html{font-size:13px}
+}
+</style>
 </head>
 <body>
-  <div class="noise"></div>
-  <div class="gradient-orb gradient-orb--1"></div>
-  <div class="gradient-orb gradient-orb--2"></div>
-  <div class="gradient-orb gradient-orb--3"></div>
 
-  <header class="header">
-    <nav class="nav container">
-      <a href="#" class="nav__logo">MB</a>
-      <ul class="nav__list">
-        <li><a href="#about">Обо мне</a></li>
-        <li><a href="#stack">Стек</a></li>
-        <li><a href="#projects">Проекты</a></li>
-        <li><a href="#contact">Контакты</a></li>
-      </ul>
-      <button class="nav__burger" aria-label="Меню">
-        <span></span><span></span><span></span>
-      </button>
-    </nav>
-  </header>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-dot" id="cursor-dot"></div>
+<canvas id="bg-canvas"></canvas>
+<div class="scan-bar"></div>
+<div class="vignette"></div>
+<div class="corner c-tl"></div>
+<div class="corner c-tr"></div>
+<div class="corner c-bl"></div>
+<div class="corner c-br"></div>
 
-  <main>
-    <section class="hero">
-      <div class="container hero__inner">
-        <p class="hero__label animate-fade-up">Junior Developer</p>
-        <h1 class="hero__title">
-          <span class="hero__title-line animate-fade-up">Привет, я</span>
-          <span class="hero__title-name animate-fade-up" data-delay="1">Матвей Бурик</span>
-        </h1>
-        <p class="hero__subtitle animate-fade-up" data-delay="2">
-          <span class="typing-text" data-words='["Python · C# · C++", "Telegram-боты", "Десктоп & лендинги", "Frontend"]'></span>
-          <span class="typing-cursor">|</span>
-        </p>
-        <p class="hero__location animate-fade-up" data-delay="3">Симферополь · Работаю удалённо</p>
-        <div class="hero__cta animate-fade-up" data-delay="4">
-          <a href="#projects" class="btn btn--primary">Смотреть проекты</a>
-          <a href="#contact" class="btn btn--ghost">Написать</a>
-        </div>
-        <div class="hero__scroll animate-fade-up" data-delay="5">
-          <span class="hero__scroll-text">Листай вниз</span>
-          <div class="hero__scroll-line"></div>
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">Sayomiyori</a>
+  <ul class="nav-links">
+    <li><a href="#about">Dossier</a></li>
+    <li><a href="#stack">Stack</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#arch">Architecture</a></li>
+    <li><a href="https://github.com/sayomiyori" target="_blank">GitHub ↗</a></li>
+  </ul>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-tag">// Subject Classification: Backend Systems Engineer</p>
+      <h1 class="hero-name" data-text="SAYOMIYORI">SAYOMIYORI</h1>
+      <p class="hero-role">Python Backend Developer</p>
+      <div class="hero-terminal">
+        <div class="hero-terminal-content">
+          <div class="term-line"><span class="term-prompt">$ </span><span class="term-key">stack:</span> <span class="term-val">FastAPI · Django · PostgreSQL · Redis · Docker</span></div>
+          <div class="term-line"><span class="term-prompt">$ </span><span class="term-key">patterns:</span> <span class="term-val">Microservices · Event-driven · CI/CD · Observability</span></div>
+          <div class="term-line"><span class="term-prompt">$ </span><span class="term-key">brokers:</span> <span class="term-val">RabbitMQ · Redis Pub/Sub · Celery</span></div>
+          <div class="term-line"><span class="term-prompt">$ </span><span class="term-key">status:</span> <span class="term-val" style="color:var(--neon)">OPEN TO OPPORTUNITIES_</span></div>
         </div>
       </div>
-    </section>
-
-    <section id="about" class="section about">
-      <div class="container">
-        <h2 class="section__title reveal">Обо мне</h2>
-        <div class="about__grid reveal">
-          <div class="about__content">
-            <p class="about__text">Разрабатываю <strong>Telegram-ботов</strong> на Python (aiogram), <strong>десктоп-приложения</strong> на C# (WPF/MVVM) и C++ (WinAPI), а также <strong>лендинги</strong> на чистом HTML/CSS/JS без фреймворков.</p>
-            <p class="about__text">Люблю доводить идеи до рабочего продукта: от макета в Figma до кода и деплоя. Открыт к пет-проектам и коллаборациям.</p>
-          </div>
-          <div class="about__highlights">
-            <div class="highlight-card">
-              <span class="highlight-card__icon">🤖</span>
-              <span>Telegram-боты, asyncio, SQLite</span>
-            </div>
-            <div class="highlight-card">
-              <span class="highlight-card__icon">🖥️</span>
-              <span>WPF, WinAPI, системные утилиты</span>
-            </div>
-            <div class="highlight-card">
-              <span class="highlight-card__icon">🌐</span>
-              <span>Лендинги, mobile-first, GitHub Pages</span>
-            </div>
-          </div>
-        </div>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://github.com/sayomiyori" target="_blank" class="btn">GitHub →</a>
       </div>
-    </section>
-
-    <section id="stack" class="section stack">
-      <div class="container">
-        <h2 class="section__title reveal">Стек</h2>
-        <div class="stack__grid reveal">
-          <div class="stack__group">
-            <h3 class="stack__group-title">Backend</h3>
-            <div class="stack__tags">
-              <span class="stack__tag">Python</span>
-              <span class="stack__tag">aiogram</span>
-              <span class="stack__tag">asyncio</span>
-              <span class="stack__tag">SQLite</span>
-              <span class="stack__tag">pytest</span>
-            </div>
-          </div>
-          <div class="stack__group">
-            <h3 class="stack__group-title">Desktop</h3>
-            <div class="stack__tags">
-              <span class="stack__tag">C#</span>
-              <span class="stack__tag">WPF</span>
-              <span class="stack__tag">MVVM</span>
-              <span class="stack__tag">C++</span>
-              <span class="stack__tag">WinAPI</span>
-            </div>
-          </div>
-          <div class="stack__group">
-            <h3 class="stack__group-title">Frontend</h3>
-            <div class="stack__tags">
-              <span class="stack__tag">HTML5</span>
-              <span class="stack__tag">CSS3</span>
-              <span class="stack__tag">JavaScript</span>
-              <span class="stack__tag">GitHub Pages</span>
-            </div>
-          </div>
-          <div class="stack__group">
-            <h3 class="stack__group-title">Инструменты</h3>
-            <div class="stack__tags">
-              <span class="stack__tag">Git</span>
-              <span class="stack__tag">Figma</span>
-              <span class="stack__tag">Blender</span>
-              <span class="stack__tag">Aseprite</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="projects" class="section projects">
-      <div class="container">
-        <h2 class="section__title reveal">Проекты</h2>
-        <div class="projects__grid">
-          <article class="project-card reveal">
-            <div class="project-card__media project-card__media--placeholder">
-              <div class="project-card__placeholder">HTML · CSS · JS</div>
-              <div class="project-card__overlay">
-                <a href="https://sayomiyori.github.io/NailLanding/" target="_blank" rel="noopener" class="project-card__link">Открыть демо →</a>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">NailLanding</h3>
-              <p class="project-card__desc">Лендинг мастера маникюра. Адаптивная вёрстка, анимации, форма записи.</p>
-              <div class="project-card__stack">
-                <span>HTML</span><span>CSS</span><span>JS</span><span>GitHub Pages</span>
-              </div>
-              <a href="https://github.com/sayomiyori/NailLanding" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card__media project-card__media--placeholder">
-              <div class="project-card__placeholder">HTML · CSS · JS</div>
-              <div class="project-card__overlay">
-                <a href="https://sayomiyori.github.io/cakesLanding/" target="_blank" rel="noopener" class="project-card__link">Открыть демо →</a>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">CakesLanding</h3>
-              <p class="project-card__desc">Лендинг кондитера. Галерея, блоки услуг, контакты.</p>
-              <div class="project-card__stack">
-                <span>HTML</span><span>CSS</span><span>JS</span><span>GitHub Pages</span>
-              </div>
-              <a href="https://github.com/sayomiyori/cakesLanding" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card__media project-card__media--placeholder">
-              <div class="project-card__placeholder">C++ · WinAPI</div>
-              <div class="project-card__overlay">
-                <a href="https://github.com/sayomiyori/HotkeyManager" target="_blank" rel="noopener" class="project-card__link">Смотреть репо →</a>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">HotkeyManager</h3>
-              <p class="project-card__desc">Менеджер горячих клавиш для Windows с low-level перехватом ввода, JSON-конфиг, многопоточность.</p>
-              <div class="project-card__stack">
-                <span>C++</span><span>WinAPI</span><span>JSON</span>
-              </div>
-              <a href="https://github.com/sayomiyori/HotkeyManager" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card__media project-card__media--placeholder">
-              <div class="project-card__placeholder">C++ · WinAPI</div>
-              <div class="project-card__overlay">
-                <a href="https://github.com/sayomiyori/ProcessMonitor" target="_blank" rel="noopener" class="project-card__link">Смотреть репо →</a>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">ProcessMonitor</h3>
-              <p class="project-card__desc">Системный монитор процессов Windows: дерево процессов, права доступа, командная строка.</p>
-              <div class="project-card__stack">
-                <span>C++</span><span>WinAPI</span>
-              </div>
-              <a href="https://github.com/sayomiyori/ProcessMonitor" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
-            </div>
-          </article>
-
-          <article class="project-card reveal">
-            <div class="project-card__media project-card__media--placeholder">
-              <div class="project-card__placeholder">Python · aiogram</div>
-              <div class="project-card__overlay">
-                <a href="https://github.com/sayomiyori/BodyTellingTelegramBot" target="_blank" rel="noopener" class="project-card__link">Смотреть репо →</a>
-              </div>
-            </div>
-            <div class="project-card__body">
-              <h3 class="project-card__title">BodyTellingBot</h3>
-              <p class="project-card__desc">Telegram-бот для фитнес-клуба: опросы, подбор тренировок, достижения, тесты.</p>
-              <div class="project-card__stack">
-                <span>Python</span><span>aiogram</span><span>SQLite</span>
-              </div>
-              <a href="https://github.com/sayomiyori/BodyTellingTelegramBot" target="_blank" rel="noopener" class="project-card__repo">Код на GitHub</a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="contact" class="section contact">
-      <div class="container">
-        <h2 class="section__title reveal">Контакты</h2>
-        <p class="contact__lead reveal">Открыт к проектам и коллаборациям. Напиши — обсудим идеи.</p>
-        <div class="contact__links reveal">
-          <a href="https://t.me/cons3qu3nc3s" target="_blank" rel="noopener" class="contact__link contact__link--tg">
-            <span class="contact__link-icon">Telegram</span>
-            <span>@cons3qu3nc3s</span>
-          </a>
-          <a href="https://vk.com/sayzeromi" target="_blank" rel="noopener" class="contact__link contact__link--vk">
-            <span class="contact__link-icon">VK</span>
-            <span>sayzeromi</span>
-          </a>
-          <a href="https://github.com/sayomiyori" target="_blank" rel="noopener" class="contact__link contact__link--gh">
-            <span class="contact__link-icon">GitHub</span>
-            <span>sayomiyori</span>
-          </a>
-          <a href="https://youtube.com/@sayomiyori" target="_blank" rel="noopener" class="contact__link contact__link--yt">
-            <span class="contact__link-icon">YouTube</span>
-            <span>@sayomiyori</span>
-          </a>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p class="footer__text">Матвей Бурик · 2025 · Портфолио</p>
     </div>
-  </footer>
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
 
-  <script src="js/script.js"></script>
+  <!-- DOSSIER -->
+  <section class="section" id="about">
+    <div class="section-header"><span class="section-title">Subject Dossier</span></div>
+    <div class="dossier reveal">
+      <div class="dossier-bar"><span>Classification // Developer Profile</span><span class="active">● Online</span></div>
+      <div class="dossier-grid">
+        <div class="dossier-col">
+          <div class="d-name">Sayomiyori</div>
+          <div class="d-role">Backend Engineer</div>
+          <div class="d-field"><span class="d-label">Function</span><span class="d-value glow">Python Backend Developer</span></div>
+          <div class="d-field"><span class="d-label">Location</span><span class="d-value">Simferopol / Remote</span></div>
+          <div class="d-field"><span class="d-label">Education</span><span class="d-value">Crimean Federal University</span></div>
+          <div class="d-field"><span class="d-label">Projects</span><span class="d-value">7 repositories</span></div>
+          <div class="d-field"><span class="d-label">Status</span><span class="d-value glow">Open to opportunities</span></div>
+        </div>
+        <div class="dossier-col">
+          <div class="focus-title">// Primary Focus Areas</div>
+          <div class="focus-item">Microservices — Django + FastAPI + RabbitMQ</div>
+          <div class="focus-item">Event-driven architecture & message brokers</div>
+          <div class="focus-item">CI/CD pipelines, Docker, Observability</div>
+          <div class="focus-item">WebSockets & real-time systems</div>
+          <div class="focus-item">Clean Architecture & production-ready code</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STACK -->
+  <section class="section" id="stack">
+    <div class="section-header"><span class="section-title">Tech Stack</span></div>
+    <div class="stack-grid reveal">
+      <div class="stack-col"><div class="stack-col-title">// Backend</div><div class="s-item">Python 3.12</div><div class="s-item">FastAPI</div><div class="s-item">Django / DRF</div><div class="s-item">Celery</div><div class="s-item">asyncio</div></div>
+      <div class="stack-col"><div class="stack-col-title">// Data</div><div class="s-item">PostgreSQL</div><div class="s-item">Redis</div><div class="s-item">RabbitMQ</div><div class="s-item">SQLAlchemy 2</div><div class="s-item">Alembic</div></div>
+      <div class="stack-col"><div class="stack-col-title">// Infra</div><div class="s-item">Docker</div><div class="s-item">Nginx</div><div class="s-item">GitHub Actions</div><div class="s-item">Linux</div><div class="s-item">Railway</div></div>
+      <div class="stack-col"><div class="stack-col-title">// Quality</div><div class="s-item">pytest</div><div class="s-item">Prometheus</div><div class="s-item">Grafana</div><div class="s-item">Sentry</div><div class="s-item">structlog</div></div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="section-header"><span class="section-title">Project Files</span></div>
+    <div class="projects-grid">
+      <a href="https://github.com/sayomiyori/TaskFlow" target="_blank" class="p-card reveal"><div class="p-card-bar"><span class="p-card-id">File #001 // Microservice</span><span class="p-card-status">DEPLOYED</span></div><div class="p-card-body"><div class="p-card-name">TaskFlow</div><div class="p-card-desc">Event-driven task platform — Django + FastAPI + RabbitMQ</div><div class="p-card-tags"><span class="p-tag">Django</span><span class="p-tag">DRF</span><span class="p-tag">FastAPI</span><span class="p-tag">RabbitMQ</span><span class="p-tag">Channels</span><span class="p-tag">Nginx</span></div><div class="p-card-details"><div class="p-detail"><span class="p-marker">▸</span>2 microservices via RabbitMQ topic exchange</div><div class="p-detail"><span class="p-marker">▸</span>Real-time WebSocket (Django Channels + Redis)</div><div class="p-detail"><span class="p-marker">▸</span>JWT, role-based perms, Nginx reverse proxy</div></div></div></a>
+      <a href="https://github.com/sayomiyori/WebHook_Manager" target="_blank" class="p-card reveal reveal-delay-1"><div class="p-card-bar"><span class="p-card-id">File #002 // SaaS</span><span class="p-card-status">DEPLOYED</span></div><div class="p-card-body"><div class="p-card-name">WebHook Manager</div><div class="p-card-desc">Reliable webhook delivery with circuit breaker</div><div class="p-card-tags"><span class="p-tag">FastAPI</span><span class="p-tag">Celery</span><span class="p-tag">Redis</span><span class="p-tag">Prometheus</span><span class="p-tag">Sentry</span></div><div class="p-card-details"><div class="p-detail"><span class="p-marker">▸</span>Exponential backoff (10s→1h), HMAC verification</div><div class="p-detail"><span class="p-marker">▸</span>Redis circuit breaker — zero event loss</div><div class="p-detail"><span class="p-marker">▸</span>Clean Arch, >80% coverage, auto-deploy</div></div></div></a>
+      <a href="https://github.com/sayomiyori/RealTimeChat" target="_blank" class="p-card reveal reveal-delay-2"><div class="p-card-bar"><span class="p-card-id">File #003 // Real-time</span><span class="p-card-status">DEPLOYED</span></div><div class="p-card-body"><div class="p-card-name">RealTimeChat</div><div class="p-card-desc">WebSocket chat — horizontal scaling via Redis Pub/Sub</div><div class="p-card-tags"><span class="p-tag">FastAPI</span><span class="p-tag">WebSocket</span><span class="p-tag">Redis Pub/Sub</span><span class="p-tag">JWT</span></div><div class="p-card-details"><div class="p-detail"><span class="p-marker">▸</span>Fan-out across N replicas via Redis channels</div><div class="p-detail"><span class="p-marker">▸</span>Rooms, typing indicators, history on connect</div><div class="p-detail"><span class="p-marker">▸</span>Fully async (asyncpg + redis.asyncio)</div></div></div></a>
+      <a href="https://github.com/sayomiyori/BookFinder-API" target="_blank" class="p-card reveal reveal-delay-3"><div class="p-card-bar"><span class="p-card-id">File #004 // REST API</span><span class="p-card-status">DEPLOYED</span></div><div class="p-card-body"><div class="p-card-name">BookFinder API</div><div class="p-card-desc">REST API for book search with monitoring & CI/CD</div><div class="p-card-tags"><span class="p-tag">FastAPI</span><span class="p-tag">PostgreSQL</span><span class="p-tag">Prometheus</span><span class="p-tag">Grafana</span></div><div class="p-card-details"><div class="p-detail"><span class="p-marker">▸</span>10 endpoints, JWT, Google Books integration</div><div class="p-detail"><span class="p-marker">▸</span>Prometheus + Grafana: error rate, p95, RPS</div><div class="p-detail"><span class="p-marker">▸</span>CI/CD: ruff → pytest 87% → Docker → deploy</div></div></div></a>
+      <a href="https://github.com/sayomiyori/ChillLibraryTgBot" target="_blank" class="p-card reveal reveal-delay-4"><div class="p-card-bar"><span class="p-card-id">File #005 // Commercial</span><span class="p-card-status">DELIVERED</span></div><div class="p-card-body"><div class="p-card-name">ChillLibrary</div><div class="p-card-desc">Telegram bot — 3 AI-powered book search modes</div><div class="p-card-tags"><span class="p-tag">aiogram</span><span class="p-tag">Google APIs</span><span class="p-tag">Gemini AI</span><span class="p-tag">Vision OCR</span></div><div class="p-card-details"><div class="p-detail"><span class="p-marker">▸</span>Search by title, cover photo, or quote</div><div class="p-detail"><span class="p-marker">▸</span>Full cycle: spec → deploy → docs</div><div class="p-detail"><span class="p-marker">▸</span>Accepted without revisions</div></div></div></a>
+      <a href="https://github.com/sayomiyori/BodyTellingTelegramBot" target="_blank" class="p-card reveal reveal-delay-5"><div class="p-card-bar"><span class="p-card-id">File #006 // Commercial</span><span class="p-card-status">DELIVERED</span></div><div class="p-card-body"><div class="p-card-name">BodyTelling</div><div class="p-card-desc">Fitness bot — workout selection & retention mechanics</div><div class="p-card-tags"><span class="p-tag">aiogram</span><span class="p-tag">APScheduler</span><span class="p-tag">pytest</span></div><div class="p-card-details"><div class="p-detail"><span class="p-marker">▸</span>Algorithm: 5-parameter workout selection</div><div class="p-detail"><span class="p-marker">▸</span>Streaks, achievements, TZ-aware reminders</div><div class="p-detail"><span class="p-marker">▸</span>Full docs, production handoff</div></div></div></a>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section class="section" id="arch">
+    <div class="section-header"><span class="section-title">Architecture Log</span></div>
+    <div class="arch-grid reveal">
+      <div class="arch-item"><div class="arch-head"><span class="arch-name">TaskFlow</span><span class="arch-sep"></span></div><div class="arch-text"><span class="arch-hl">Django for ORM-heavy domain logic</span> + <span class="arch-hl">FastAPI for async notification consumer</span> — each framework where it's strongest. RabbitMQ topic exchange decouples writes from delivery.</div></div>
+      <div class="arch-item"><div class="arch-head"><span class="arch-name">WebHook Manager</span><span class="arch-sep"></span></div><div class="arch-text"><span class="arch-hl">Celery + Redis broker</span> for fire-and-forget delivery. Circuit breaker prevents hammering dead endpoints. <span class="arch-hl">HMAC + idempotency at infra layer</span>, not business logic.</div></div>
+      <div class="arch-item"><div class="arch-head"><span class="arch-name">RealTimeChat</span><span class="arch-sep"></span></div><div class="arch-text"><span class="arch-hl">Redis Pub/Sub over in-memory</span> — scaling to N replicas is transparent. WS auth via query param because browsers don't support custom headers on handshake.</div></div>
+      <div class="arch-item"><div class="arch-head"><span class="arch-name">BookFinder API</span><span class="arch-sep"></span></div><div class="arch-text"><span class="arch-hl">Async SQLAlchemy 2 + asyncpg</span> — bottleneck is I/O. Prometheus from day one — errors visible in dashboard before the first bug report.</div></div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="footer reveal">
+    <div class="footer-text">// End of transmission</div>
+    <div class="footer-links">
+      <a href="https://github.com/sayomiyori" target="_blank" class="f-link">GitHub</a>
+      <a href="mailto:flamxd@mail.ru" class="f-link">Contact</a>
+    </div>
+  </div>
+  <div style="height:3rem"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ===== THREE.JS PARTICLES + GRID =====
+(function(){
+  const C=document.getElementById('bg-canvas');
+  const R=new THREE.WebGLRenderer({canvas:C,alpha:true,antialias:false});
+  R.setSize(innerWidth,innerHeight);
+  R.setPixelRatio(Math.min(devicePixelRatio,2));
+  const S=new THREE.Scene();
+  const cam=new THREE.PerspectiveCamera(60,innerWidth/innerHeight,.1,1000);
+  cam.position.set(0,1,6);
+
+  // Particles
+  const N=2200;
+  const g=new THREE.BufferGeometry();
+  const p=new Float32Array(N*3),v=new Float32Array(N*3),c=new Float32Array(N*3);
+  for(let i=0;i<N;i++){
+    p[i*3]=(Math.random()-.5)*22;
+    p[i*3+1]=(Math.random()-.5)*22;
+    p[i*3+2]=(Math.random()-.5)*16;
+    v[i*3]=(Math.random()-.5)*.003;
+    v[i*3+1]=(Math.random()-.5)*.003;
+    v[i*3+2]=(Math.random()-.5)*.001;
+    const bright=.3+Math.random()*.7;
+    c[i*3]=.22*bright;c[i*3+1]=1*bright;c[i*3+2]=.08*bright;
+  }
+  g.setAttribute('position',new THREE.BufferAttribute(p,3));
+  g.setAttribute('color',new THREE.BufferAttribute(c,3));
+  const pm=new THREE.PointsMaterial({size:.025,vertexColors:true,transparent:true,opacity:.6,sizeAttenuation:true});
+  const pts=new THREE.Points(g,pm);
+  S.add(pts);
+
+  // Grid
+  const gg=new THREE.PlaneGeometry(50,50,50,50);
+  const gm=new THREE.MeshBasicMaterial({color:0x1a3a1a,wireframe:true,transparent:true,opacity:.07});
+  const grid=new THREE.Mesh(gg,gm);
+  grid.rotation.x=-Math.PI/2.3;grid.position.y=-5;grid.position.z=-4;
+  S.add(grid);
+
+  // Floating rings
+  for(let i=0;i<3;i++){
+    const rg=new THREE.RingGeometry(1.5+i*1.5,1.6+i*1.5,64);
+    const rm=new THREE.MeshBasicMaterial({color:0x39ff14,transparent:true,opacity:.03,side:THREE.DoubleSide});
+    const ring=new THREE.Mesh(rg,rm);
+    ring.position.set((Math.random()-.5)*8,(Math.random()-.5)*6,-5-i*2);
+    ring.rotation.x=Math.random()*Math.PI;
+    ring.rotation.y=Math.random()*Math.PI;
+    ring.userData={rx:.001+Math.random()*.002,ry:.001+Math.random()*.002};
+    S.add(ring);
+  }
+
+  let mx=0,my=0,sy=0;
+  document.addEventListener('mousemove',e=>{mx=(e.clientX/innerWidth-.5)*2;my=(e.clientY/innerHeight-.5)*2});
+  addEventListener('scroll',()=>{sy=scrollY});
+
+  function animate(){
+    requestAnimationFrame(animate);
+    const pa=g.attributes.position.array;
+    for(let i=0;i<N;i++){
+      pa[i*3]+=v[i*3];pa[i*3+1]+=v[i*3+1];pa[i*3+2]+=v[i*3+2];
+      if(Math.abs(pa[i*3])>11)v[i*3]*=-1;
+      if(Math.abs(pa[i*3+1])>11)v[i*3+1]*=-1;
+      if(Math.abs(pa[i*3+2])>8)v[i*3+2]*=-1;
+    }
+    g.attributes.position.needsUpdate=true;
+    pts.rotation.y+=.0004;pts.rotation.x+=.0001;
+    cam.position.x+=(.4*mx-cam.position.x)*.02;
+    cam.position.y+=(-.3*my+1.5-cam.position.y)*.02;
+    grid.position.y=-5+sy*.0015;
+    pm.opacity=Math.max(.15,.6-sy*.0004);
+    S.children.forEach(o=>{if(o.userData.rx){o.rotation.x+=o.userData.rx;o.rotation.y+=o.userData.ry}});
+    cam.lookAt(S.position);
+    R.render(S,cam);
+  }
+  animate();
+  addEventListener('resize',()=>{cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();R.setSize(innerWidth,innerHeight)});
+})();
+
+// ===== CUSTOM CURSOR =====
+(function(){
+  const c=document.getElementById('cursor'),d=document.getElementById('cursor-dot');
+  let cx=0,cy=0,dx=0,dy=0;
+  document.addEventListener('mousemove',e=>{dx=e.clientX;dy=e.clientY;d.style.left=dx+'px';d.style.top=dy+'px'});
+  function loop(){cx+=(dx-cx)*.12;cy+=(dy-cy)*.12;c.style.left=cx+'px';c.style.top=cy+'px';requestAnimationFrame(loop)}
+  loop();
+  document.querySelectorAll('a,.btn,.p-card,.focus-item,.s-item').forEach(el=>{
+    el.addEventListener('mouseenter',()=>c.classList.add('hover'));
+    el.addEventListener('mouseleave',()=>c.classList.remove('hover'));
+  });
+})();
+
+// ===== NAV SCROLL =====
+addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',scrollY>50)});
+
+// ===== REVEAL ON SCROLL =====
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:'smooth'})})});
+</script>
 </body>
 </html>
