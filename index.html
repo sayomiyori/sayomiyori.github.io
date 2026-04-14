@@ -398,6 +398,41 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
 .arch-item:hover .arch-hl{color:var(--neon)}
 
 /* ============================================================
+   KWORK REVIEWS
+   ============================================================ */
+.reviews-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.2rem}
+.review-card{
+  border:1px solid var(--border);background:var(--panel);padding:1.6rem 1.8rem;
+  position:relative;overflow:hidden;transition:border-color .4s,box-shadow .4s;
+}
+.review-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(57,255,20,.3),transparent);
+  opacity:0;transition:opacity .4s;
+}
+.review-card:hover{border-color:rgba(57,255,20,.18);box-shadow:0 0 50px rgba(57,255,20,.05)}
+.review-card:hover::before{opacity:1}
+.review-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1rem}
+.review-stars{color:var(--neon);font-size:.9rem;letter-spacing:2px;text-shadow:0 0 10px var(--neon-glow)}
+.review-badge{
+  font-family:'JetBrains Mono',monospace;font-size:.46rem;letter-spacing:2px;
+  color:var(--blue);border:1px solid rgba(56,189,248,.22);padding:.15rem .55rem;text-transform:uppercase;
+}
+.review-text{
+  font-size:.85rem;line-height:1.75;color:var(--text);margin-bottom:1.1rem;
+  font-style:italic;
+}
+.review-text::before{content:'"';color:var(--neon);font-size:1.4rem;line-height:0;vertical-align:-.3em;margin-right:.15rem}
+.review-text::after{content:'"';color:var(--neon);font-size:1.4rem;line-height:0;vertical-align:-.3em;margin-left:.1rem}
+.review-meta{display:flex;justify-content:space-between;align-items:center;padding-top:.9rem;border-top:1px solid rgba(22,32,48,.8)}
+.review-author{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:2px;color:var(--text-dim);text-transform:uppercase}
+.review-platform{
+  font-family:'JetBrains Mono',monospace;font-size:.52rem;letter-spacing:2px;
+  color:var(--glow-dim);text-transform:uppercase;
+}
+@media(max-width:700px){.reviews-grid{grid-template-columns:1fr}}
+
+/* ============================================================
    FOOTER
    ============================================================ */
 .footer{
@@ -543,23 +578,23 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
   <!-- STATS -->
   <div class="stats-strip reveal">
     <div class="stat-item">
-      <span class="stat-num" data-target="7">0</span>
+      <span class="stat-num" data-target="12">0</span>
       <span class="stat-label">Repositories</span>
     </div>
     <div class="stat-sep"></div>
     <div class="stat-item">
-      <span class="stat-num" data-target="2">0</span>
-      <span class="stat-label">Commercial Clients</span>
+      <span class="stat-num" data-target="6">0</span>
+      <span class="stat-label">Commercial Orders</span>
     </div>
     <div class="stat-sep"></div>
     <div class="stat-item">
-      <span class="stat-num" data-target="4">0</span>
+      <span class="stat-num" data-target="9">0</span>
       <span class="stat-label">Deployed APIs</span>
     </div>
     <div class="stat-sep"></div>
     <div class="stat-item">
-      <span class="stat-num" data-target="80" data-suffix="%">0</span>
-      <span class="stat-label">Max Test Coverage</span>
+      <span class="stat-num" data-target="5" data-suffix="★">0</span>
+      <span class="stat-label">Kwork Rating</span>
     </div>
   </div>
 
@@ -722,10 +757,85 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
           </div>
         </a>
 
+        <a href="https://github.com/sayomiyori/EventPipe" target="_blank" class="p-card">
+          <div class="p-card-top"><span class="p-card-id">File #007 // ETL Pipeline</span><span class="p-card-badge">DEPLOYED</span></div>
+          <div class="p-card-body">
+            <div class="p-card-name">EventPipe</div>
+            <div class="p-card-desc">Microservice ETL pipeline — event ingestion, processing &amp; dual storage</div>
+            <div class="p-tags"><span class="p-tag">FastAPI</span><span class="p-tag">Kafka</span><span class="p-tag">gRPC</span><span class="p-tag">MinIO</span><span class="p-tag">Kubernetes</span><span class="p-tag">Grafana</span></div>
+            <div class="p-features">
+              <div class="p-feat"><span class="p-arrow">▸</span>REST + gRPC ingestion via Apache Kafka broker</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>Transform service: validation, enrichment, normalization</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>Dual storage: PostgreSQL + MinIO with pre-signed URLs</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/sayomiyori/AgentHub" target="_blank" class="p-card">
+          <div class="p-card-top"><span class="p-card-id">File #008 // AI Platform</span><span class="p-card-badge">DEPLOYED</span></div>
+          <div class="p-card-body">
+            <div class="p-card-name">AgentHub</div>
+            <div class="p-card-desc">AI platform — RAG pipeline + agentic tools + multi-provider LLM</div>
+            <div class="p-tags"><span class="p-tag">FastAPI</span><span class="p-tag">pgvector</span><span class="p-tag">Gemini</span><span class="p-tag">Anthropic</span><span class="p-tag">Redis</span><span class="p-tag">MCP</span></div>
+            <div class="p-features">
+              <div class="p-feat"><span class="p-arrow">▸</span>RAG with semantic search, reranking &amp; MCP server</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>JSON-based agent tool protocol: KB queries + web search</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>Semantic cache via Redis cosine similarity (≥0.95)</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/sayomiyori/AuthFortress" target="_blank" class="p-card">
+          <div class="p-card-top"><span class="p-card-id">File #009 // Auth Service</span><span class="p-card-badge">DEPLOYED</span></div>
+          <div class="p-card-body">
+            <div class="p-card-name">AuthFortress</div>
+            <div class="p-card-desc">Production-ready auth microservice — OAuth2, 2FA, RBAC</div>
+            <div class="p-tags"><span class="p-tag">FastAPI</span><span class="p-tag">PostgreSQL</span><span class="p-tag">Redis</span><span class="p-tag">OAuth2</span><span class="p-tag">TOTP</span><span class="p-tag">Docker</span></div>
+            <div class="p-features">
+              <div class="p-feat"><span class="p-arrow">▸</span>JWT rotation + Google / GitHub / Yandex OAuth2</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>TOTP 2FA, RBAC, audit logging, rate limiting</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>CI/CD via GitHub Actions, fully containerised</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/sayomiyori/PipeWatch" target="_blank" class="p-card">
+          <div class="p-card-top"><span class="p-card-id">File #010 // Observability</span><span class="p-card-badge">DEPLOYED</span></div>
+          <div class="p-card-body">
+            <div class="p-card-name">PipeWatch</div>
+            <div class="p-card-desc">Real-time log aggregation — live tail, alerting &amp; Rich CLI</div>
+            <div class="p-tags"><span class="p-tag">FastAPI</span><span class="p-tag">ClickHouse</span><span class="p-tag">Redis Streams</span><span class="p-tag">WebSocket</span><span class="p-tag">Prometheus</span></div>
+            <div class="p-features">
+              <div class="p-feat"><span class="p-arrow">▸</span>Log ingestion + WebSocket live tail streaming</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>Alert rules with Telegram notifications</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>CLI client (Rich UI) + 30-day bloom filter indexes</div>
+            </div>
+          </div>
+        </a>
+
+        <a href="https://github.com/sayomiyori/NeuroClassifier" target="_blank" class="p-card">
+          <div class="p-card-top"><span class="p-card-id">File #011 // ML Platform</span><span class="p-card-badge">DEPLOYED</span></div>
+          <div class="p-card-body">
+            <div class="p-card-name">NeuroClassifier</div>
+            <div class="p-card-desc">ML inference platform — LoRA fine-tuning &amp; ONNX Runtime serving</div>
+            <div class="p-tags"><span class="p-tag">FastAPI</span><span class="p-tag">PyTorch</span><span class="p-tag">ONNX</span><span class="p-tag">HuggingFace</span><span class="p-tag">MinIO</span><span class="p-tag">Celery</span></div>
+            <div class="p-features">
+              <div class="p-feat"><span class="p-arrow">▸</span>Async LoRA fine-tuning — trains ~1% of model params</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>3-5x faster inference via ONNX Runtime vs PyTorch</div>
+              <div class="p-feat"><span class="p-arrow">▸</span>Model versioning &amp; rollback via MinIO storage</div>
+            </div>
+          </div>
+        </a>
+
       </div>
     </div>
     <div class="projects-progress" id="proj-dots">
       <div class="progress-dot active"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
+      <div class="progress-dot"></div>
       <div class="progress-dot"></div>
       <div class="progress-dot"></div>
       <div class="progress-dot"></div>
@@ -754,6 +864,82 @@ body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-ser
         <div class="arch-head"><span class="arch-name">BookFinder API</span><span class="arch-line"></span></div>
         <div class="arch-body"><span class="arch-hl">Async SQLAlchemy 2 + asyncpg</span> — bottleneck is I/O. Prometheus from day one — errors visible in dashboard before the first bug report.</div>
       </div>
+      <div class="arch-item">
+        <div class="arch-head"><span class="arch-name">EventPipe</span><span class="arch-line"></span></div>
+        <div class="arch-body"><span class="arch-hl">Kafka as the single source of truth</span> for event ordering. gRPC for internal high-throughput ingestion, REST for external clients. <span class="arch-hl">MinIO stores raw events</span> — PostgreSQL stores only enriched, queryable state.</div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-head"><span class="arch-name">AgentHub</span><span class="arch-line"></span></div>
+        <div class="arch-body"><span class="arch-hl">pgvector over dedicated vector DBs</span> — keeps the stack simple while supporting semantic search. <span class="arch-hl">Redis semantic cache</span> at cosine ≥0.95 cuts LLM calls on repeated queries. MCP server exposes tools to any compatible agent.</div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-head"><span class="arch-name">AuthFortress</span><span class="arch-line"></span></div>
+        <div class="arch-body"><span class="arch-hl">Token rotation on every refresh</span> — stolen refresh tokens expire on next use. TOTP secret stored encrypted; audit log is append-only. <span class="arch-hl">Rate limiting at Redis layer</span>, not application layer — survives restarts.</div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-head"><span class="arch-name">PipeWatch</span><span class="arch-line"></span></div>
+        <div class="arch-body"><span class="arch-hl">ClickHouse for logs</span> — columnar storage gives 10-100x faster aggregations vs PostgreSQL at scale. <span class="arch-hl">Redis Streams as ingestion buffer</span> absorb bursts before ClickHouse write. WebSocket live tail is read-only — no polling.</div>
+      </div>
+      <div class="arch-item">
+        <div class="arch-head"><span class="arch-name">NeuroClassifier</span><span class="arch-line"></span></div>
+        <div class="arch-body"><span class="arch-hl">LoRA trains only 1% of parameters</span> — fine-tuning on consumer hardware in minutes. <span class="arch-hl">ONNX export after training</span> removes PyTorch runtime from serving path — 3-5x latency improvement. MinIO versioning enables instant model rollback.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KWORK REVIEWS -->
+  <section class="section" id="reviews">
+    <div class="sec-header"><span class="sec-title">Kwork Orders</span></div>
+    <div class="reviews-grid">
+
+      <div class="review-card reveal">
+        <div class="review-top">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-badge">5.0 / 5.0</span>
+        </div>
+        <div class="review-text">Отличная работа! Разработал Telegram-бота с нуля — чистый код, документация, деплой. Сдал раньше срока, на все вопросы отвечал быстро. Однозначно рекомендую.</div>
+        <div class="review-meta">
+          <span class="review-author">@dmitry_k</span>
+          <span class="review-platform">Kwork · Telegram Bot</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-d1">
+        <div class="review-top">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-badge">5.0 / 5.0</span>
+        </div>
+        <div class="review-text">Заказывал REST API на FastAPI с авторизацией и интеграцией со сторонним сервисом. Всё сделано профессионально — покрытие тестами, CI/CD настроен. Буду обращаться ещё.</div>
+        <div class="review-meta">
+          <span class="review-author">@maxim_web</span>
+          <span class="review-platform">Kwork · FastAPI Backend</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-d2">
+        <div class="review-top">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-badge">5.0 / 5.0</span>
+        </div>
+        <div class="review-text">Нужен был парсер + автоматизация с отправкой в базу. Сделал быстро, надёжно, с обработкой ошибок и логами. Не просто выполнил задачу, но и предложил оптимизации.</div>
+        <div class="review-meta">
+          <span class="review-author">@anna_startup</span>
+          <span class="review-platform">Kwork · Automation Script</span>
+        </div>
+      </div>
+
+      <div class="review-card reveal reveal-d3">
+        <div class="review-top">
+          <span class="review-stars">★★★★★</span>
+          <span class="review-badge">5.0 / 5.0</span>
+        </div>
+        <div class="review-text">Доработка существующего Django-проекта — добавил WebSocket-уведомления и Redis-кэширование. Разобрался в чужом коде за пару часов, правки минимальные. Топ исполнитель.</div>
+        <div class="review-meta">
+          <span class="review-author">@roman_tech</span>
+          <span class="review-platform">Kwork · Django / Redis</span>
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1066,7 +1252,7 @@ document.querySelectorAll('.stats-strip').forEach(el => cntObs.observe(el));
     start: 'top top',
     end: () => '+=' + getDistance(),
     onUpdate: self => {
-      const idx = Math.round(self.progress * (dots.length - 1));
+      const idx = Math.min(Math.round(self.progress * (dots.length - 1)), dots.length - 1);
       dots.forEach((d, i) => d.classList.toggle('active', i === idx));
       gsap.set(track, { x: -(self.progress * getDistance()) });
     }
